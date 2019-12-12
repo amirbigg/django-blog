@@ -4,7 +4,7 @@
 
     <div class="card">
         {% for article in all_articles %}
-            <p class="card-body">{{ article.title }}</p>
+            <a href="{{ article.get_absolute_url }}" class="card-body">{{ article.title }}</a>
         {% endfor %}
     </div>
 
