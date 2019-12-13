@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import UserLoginForm
+from django.contrib.auth import authenticate, login
 
 
 def user_login(request):
@@ -8,8 +9,10 @@ def user_login(request):
 		if form.is_valid():
 			username = form.cleaned_data['username']
 			password = form.cleaned_data['password']
-			print('+'*80)
-			print(username, password)
+			user = authenticate(request, username=username, password=password)
+			if user is not None:
+				login(request, user)
+				return redirect('blog:all_articles')
 	else:
 		form = UserLoginForm()
 	return render(request, 'accounts/login.html', {'form':form})
