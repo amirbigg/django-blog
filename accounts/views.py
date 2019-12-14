@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import UserLoginForm, UserRegistrationForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 
@@ -33,3 +33,8 @@ def user_register(request):
 	else:
 		form = UserRegistrationForm()
 	return render(request, 'accounts/register.html', {'form':form})
+
+def user_logout(request):
+	logout(request)
+	messages.success(request, 'you logged out successfully', 'success')
+	return redirect('blog:all_articles')
