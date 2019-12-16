@@ -1,4 +1,11 @@
 {% extends 'base.html' %}
+{% load static %}
+
+
+{% block custom_tags %}
+<link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+{% endblock %}
+
 
 {% block content %}
     <h3>{{ article.title }}</h3>
