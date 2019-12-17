@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from ckeditor.fields import RichTextField
 
 
 class PublishedArticlesManager(models.Manager):
@@ -16,7 +17,7 @@ class Article(models.Model):
 	title = models.CharField(max_length=120)
 	slug = models.SlugField(max_length=120, unique=True)
 	writer = models.ForeignKey(User, on_delete=models.CASCADE)
-	body = models.TextField()
+	body = RichTextField()
 	publish = models.DateTimeField(default=timezone.now)
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
