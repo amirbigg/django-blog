@@ -9,6 +9,6 @@
 
 {% block content %}
     <h3>{{ article.title }}</h3>
-    <small>{{ article.publish }}</small><hr/>
-    <p>{{ article.body }}</p>
+    <small>{{ article.publish|timesince }}</small><hr/>
+    <p>{{ article.body|safe }}</p>
 {% endblock %}
